@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: project
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/User
+    username: root
+    password: Srgbs0205@
+users:
+  path: ./user_data/users.json
+  username:
+    max_length: 20
+  password:
+    min_length: 6
+    pattern: '[^A-Za-z0-9_]+$'
+
