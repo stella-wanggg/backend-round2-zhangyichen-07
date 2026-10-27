@@ -1,9 +1,7 @@
 package com.example.pojo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,4 +19,5 @@ public class User {
     @Size(min = 6,message = "密码最少6位")
     @Pattern(regexp = "^[A-Za-z0-9_]+$",message = "密码只能包含大小写字母、数字、下划线")
     private String password;
+    private String role;
 }

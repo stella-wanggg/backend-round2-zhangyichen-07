@@ -11,6 +11,10 @@ users:
   username:
     max_length: 20
   password:
+    algorithm: pbkdf2
     min_length: 6
-    pattern: '[^A-Za-z0-9_]+$'
+    pattern: '^[A-Za-z0-9_]+$'
+jwt:
+  secret: "zhangyichen0205abcdefghijklmnopqrstuywxz"
+  expiration: 7200000
 

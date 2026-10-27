@@ -17,7 +17,7 @@ public interface UserMapper {
     public List<User> getUsersByPage(Integer start,Integer pageSize);
 
     // 增加用户
-    @Insert("insert into user_info(username,password) values (#{username},#{password} )")
+    @Insert("insert into user_info(username,password,role) values (#{username},#{password},#{role})")
     public void addUsers(User user);
 
     @Select("select * from user_info where username = #{username}")
@@ -26,5 +26,6 @@ public interface UserMapper {
     @Select("select count(*) from user_info")
     public int getUserCount();
 
-
+    @Select("select * from user_info where id = #{id}")
+    public User getUserById(Integer id);
 }

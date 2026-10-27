@@ -1,4 +1,4 @@
-package com.example.yaml.detail;
+package com.example.config.yaml.detail;
 
 import lombok.Data;
 

@@ -19,7 +19,7 @@ import java.util.List;
 public class GlobalExceptionHandler {
     @ExceptionHandler(value = BusinessException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result handleBusinessException(BusinessException e) { // 接用户名字,密码不合适,用户名重复之类的问题...
+    public Result handleBusinessException(BusinessException e) { // 接页码为负之类的不在参数校验范围的异常
         log.warn("用户输入有误:{}",e.getMessage()); // 输出日志到控制台(用户不按规矩出牌,只输出信息就行)
         return Result.error(400,e.getMessage());
 
@@ -32,6 +32,13 @@ public class GlobalExceptionHandler {
         String defaultMessage = fieldErrors.get(0).getDefaultMessage(); // 取得第一条报错信息,提示的同时防止信息泄露
         log.warn("用户输入内容检验有误:{}",defaultMessage);
         return Result.error(400,defaultMessage);
+    }
+
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Result IllegalArgumentException(IllegalArgumentException e){
+        log.warn("用户输入的密码算法不支持",e.getMessage());
+        return Result.error(400,"不支持的密码算法");
     }
 
     @ExceptionHandler(NoResourceFoundException.class)
@@ -54,4 +61,5 @@ public class GlobalExceptionHandler {
         log.error("系统出错:",e); // 报错信息展示在控制台(展示完整异常,方便修改)
         return Result.error(500,"异常啦!请联系程序员");
     }
+
 }
